@@ -271,6 +271,15 @@ html{-webkit-text-size-adjust:100%;}
 .scurve-kpi .k{font-size:10px;color:#8b94a3;text-transform:uppercase;letter-spacing:.05em}
 .scurve-kpi .v{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;margin-top:2px}
 .scurve-note{font-size:11px;color:#8b94a3;margin:8px 0 0}
+
+.proy-sub{font-size:12px;color:#8b94a3;margin:14px 0 6px;text-transform:uppercase;letter-spacing:.05em}
+.proy-bn{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.proy-bn .bn{background:#1e2530;border:1px solid #262e3a;border-left:3px solid #ff5d5d;border-radius:6px;padding:8px 12px;font-size:12.5px;line-height:1.4}
+.proy-bn .bn b{color:#eef1f5}
+.proy-bn .bn-none{font-size:12.5px;color:#8b94a3}
+.tr-up{color:#3ddc97;font-weight:600}.tr-down{color:#ff5d5d;font-weight:600}.tr-flat{color:#8b94a3;font-weight:600}
+.pv-bad{color:#ff5d5d;font-weight:600}.pv-good{color:#3ddc97;font-weight:600}
+.btn-toggle.active{border-color:var(--amber,#f5a524);color:var(--amber,#f5a524);}
 </style>
 </head>
 <body>
@@ -338,42 +347,42 @@ html{-webkit-text-size-adjust:100%;}
       <div class="panel chart-card">
         <div class="mobile-partida-pick"><select class="select-box" id="partidaSelectMobile" aria-label="Elegir partida"><option value="">Todas las partidas (3875)</option><option value="Revision Muros Losas Trazador / Supervisor">Revision Muros Losas Trazador / Supervisor (88)</option><option value="Descarachado, Rinconeos">Descarachado, Rinconeos (88)</option><option value="Puntereos Rasgos, Pisos Terrazas y Desbastes Muros">Puntereos Rasgos, Pisos Terrazas y Desbastes Muros (88)</option><option value="Pulidos Cielos">Pulidos Cielos (80)</option><option value="Pulidos Muros">Pulidos Muros (86)</option><option value="Trazado barandas">Trazado barandas (82)</option><option value="Instalación de Barandas en Terraza">Instalación de Barandas en Terraza (65)</option><option value="Protección Barandas en Terrazas">Protección Barandas en Terrazas (0)</option><option value="Rasgos Ventanas">Rasgos Ventanas (79)</option><option value="Rectificar Puntos eléctricos">Rectificar Puntos eléctricos (83)</option><option value="Rectificar Pasadas Ventilacion cocinas / Shaft Baños">Rectificar Pasadas Ventilacion cocinas / Shaft Baños (90)</option><option value="Quemados muros y cielo con Acido Muriatico">Quemados muros y cielo con Acido Muriatico (32)</option><option value="Afinado y nivel grada buque">Afinado y nivel grada buque (61)</option><option value="Albañilería Muros Cocina y baños/ puntual">Albañilería Muros Cocina y baños/ puntual (80)</option><option value="Estuco Rasgos Ventanas">Estuco Rasgos Ventanas (81)</option><option value="Maquillaje y fileteos Rasgos Ventanas">Maquillaje y fileteos Rasgos Ventanas (74)</option><option value="Maquillajes cielo Terraza">Maquillajes cielo Terraza (73)</option><option value="Vertical Alcantarillado ">Vertical Alcantarillado  (80)</option><option value="Pruebas descargas de alcantarillado">Pruebas descargas de alcantarillado (76)</option><option value="Vertical Ductos Extracción">Vertical Ductos Extracción (77)</option><option value="Embarrilado Descargas">Embarrilado Descargas (80)</option><option value="Despeje Puntos Electricos">Despeje Puntos Electricos (82)</option><option value="Despeje Almoadillas Sanitarias Agua. P">Despeje Almoadillas Sanitarias Agua. P (80)</option><option value="Impermeabilización Rasgos Ventanas">Impermeabilización Rasgos Ventanas (72)</option><option value="Trazado Departamento">Trazado Departamento (80)</option><option value="Pino Impreganado para Grada Buque en Shaft">Pino Impreganado para Grada Buque en Shaft (87)</option><option value="Tuberías Electricas curvas para Tabiques">Tuberías Electricas curvas para Tabiques (88)</option><option value="Reparaciones Sanitarias (Picados) Tabiques">Reparaciones Sanitarias (Picados) Tabiques (88)</option><option value="Reparacion Mortero Instalaciones">Reparacion Mortero Instalaciones (89)</option><option value="Estructuración y 1° Caras Tabiquería">Estructuración y 1° Caras Tabiquería (75)</option><option value="Instalacioón Electrica en Tabiqueria">Instalacioón Electrica en Tabiqueria (70)</option><option value="Instalación Sanitaria en Tabiqueria">Instalación Sanitaria en Tabiqueria (67)</option><option value="Instalación Extracción en Tabiquería">Instalación Extracción en Tabiquería (70)</option><option value="Instalación Refuerzos ( TV, Accesorios, Vanitorio, etc.)">Instalación Refuerzos ( TV, Accesorios, Vanitorio, etc.) (62)</option><option value="Prueba de agua (mantener con presión)">Prueba de agua (mantener con presión) (63)</option><option value="2° Caras de Tabiqueria">2° Caras de Tabiqueria (56)</option><option value="Niveles Trazado">Niveles Trazado (59)</option><option value="Dinteles, Vigones, zócalos  cielo Falso">Dinteles, Vigones, zócalos  cielo Falso (57)</option><option value="Aislación Muros Perimetral (Volcapol)">Aislación Muros Perimetral (Volcapol) (55)</option><option value="Alambrado Enchufes / Iluminación">Alambrado Enchufes / Iluminación (61)</option><option value="Enlauchado Eléctrico Corrientes Débiles">Enlauchado Eléctrico Corrientes Débiles (61)</option><option value="Yeso Cielos">Yeso Cielos (49)</option><option value="Yeso  Muros, Cuadraturas Cajas, Canterias etc.">Yeso  Muros, Cuadraturas Cajas, Canterias etc. (47)</option><option value="Huinchas, esquineros">Huinchas, esquineros (42)</option><option value="Lineas en general">Lineas en general (24)</option><option value="Descontaminar losas con pulido">Descontaminar losas con pulido (46)</option><option value="Impermeabilización">Impermeabilización (43)</option><option value="Encatrado Tinas">Encatrado Tinas (32)</option><option value="Encatrado Receptáculos">Encatrado Receptáculos (44)</option><option value="Instalación Tinas">Instalación Tinas (24)</option><option value="Instalación Marco Ventanas">Instalación Marco Ventanas (52)</option><option value="Instalación Hojas de Ventana y fijos.">Instalación Hojas de Ventana y fijos. (52)</option><option value="Instalacion Receptáculos">Instalacion Receptáculos (16)</option><option value="Faldon Tinas / Receptaculos/ Zocalos y base Cubierta">Faldon Tinas / Receptaculos/ Zocalos y base Cubierta (28)</option><option value="Nivelación Pisos/ Reparación sectores">Nivelación Pisos/ Reparación sectores (40)</option><option value="Instalación Piernas Closet y Cenefa">Instalación Piernas Closet y Cenefa (16)</option><option value="Instalacion Puertas">Instalacion Puertas (18)</option><option value="Pilastras ">Pilastras  (16)</option><option value="Cerraduras General">Cerraduras General (16)</option><option value="Impermeabilización ">Impermeabilización  (42)</option><option value="Cerámica Piso Terraza">Cerámica Piso Terraza (14)</option><option value="Cerámica Piso Cocina">Cerámica Piso Cocina (19)</option><option value="Cerámica Piso Baño">Cerámica Piso Baño (20)</option><option value="Cerámica Muros Baño ">Cerámica Muros Baño  (14)</option><option value="Cerámica Muros Cocina">Cerámica Muros Cocina (16)</option><option value="Fragues Cerámica piso y muro">Fragues Cerámica piso y muro (14)</option><option value="Instalación perfiles aluminio baños">Instalación perfiles aluminio baños (16)</option><option value="Instalación cornisas">Instalación cornisas (14)</option><option value="1° - 2° Manos Empaste Cielos ">1° - 2° Manos Empaste Cielos  (19)</option><option value="1° - 2° Manos Empaste Muros, tabiques">1° - 2° Manos Empaste Muros, tabiques (15)</option><option value="Pintura Fondo Closet">Pintura Fondo Closet (24)</option><option value="Remate Cornisas">Remate Cornisas (12)</option><option value="1° manos Pintura Cielos Baños y Muros Cocinas">1° manos Pintura Cielos Baños y Muros Cocinas (8)</option><option value="Instalación Mueble Vanitorio en Baños">Instalación Mueble Vanitorio en Baños (0)</option><option value="Instalacion Muebles Bases">Instalacion Muebles Bases (8)</option><option value="Interiores de Closet">Interiores de Closet (15)</option><option value="Quincalleria Ventanas">Quincalleria Ventanas (0)</option><option value="Losalin">Losalin (12)</option><option value="Instalacion Muebles Aereo en Cocina">Instalacion Muebles Aereo en Cocina (7)</option><option value="Sello Muros y 1° Manos Pintura Muros Perimetrales">Sello Muros y 1° Manos Pintura Muros Perimetrales (8)</option><option value="Pintura Sello Puertas ">Pintura Sello Puertas  (8)</option><option value="Colocación Guardapolvos Laminados">Colocación Guardapolvos Laminados (0)</option><option value="Instalacion Cubiertas Muebles Cocinas">Instalacion Cubiertas Muebles Cocinas (0)</option><option value="Instalacion Cubiertas Muebles Vanitorios">Instalacion Cubiertas Muebles Vanitorios (0)</option><option value="Modulación Eléctrica ">Modulación Eléctrica  (0)</option><option value="Instalación Tablero Eléctrico">Instalación Tablero Eléctrico (0)</option><option value="Instalacion Lavaplatos">Instalacion Lavaplatos (0)</option><option value="Instalacion Griferias ">Instalacion Griferias  (0)</option><option value="Instalacion Artefactos Sanitarios WC">Instalacion Artefactos Sanitarios WC (0)</option><option value="Instalacion Rejilla Extraccion">Instalacion Rejilla Extraccion (0)</option><option value="Instalación Piso Flotante">Instalación Piso Flotante (0)</option><option value="Instalación Junquillos">Instalación Junquillos (0)</option><option value="Puerta Closet">Puerta Closet (0)</option><option value="Topes Puerta">Topes Puerta (0)</option><option value="Papel Mural">Papel Mural (0)</option><option value="Tapa Artefactos Electricos y Luminarias">Tapa Artefactos Electricos y Luminarias (0)</option><option value="Sellos y Detalles">Sellos y Detalles (0)</option><option value="Instalacion Campana &amp; Horno">Instalacion Campana &amp; Horno (0)</option><option value="Instalacion Encimera">Instalacion Encimera (0)</option><option value="Instalacion Cubrejunta">Instalacion Cubrejunta (0)</option><option value="Pintura Final General">Pintura Final General (0)</option><option value="Instalación Espejos">Instalación Espejos (0)</option><option value="Instalación Accesorios">Instalación Accesorios (0)</option><option value="Limpieza Fina">Limpieza Fina (0)</option><option value="R1">R1 (0)</option><option value="RF">RF (0)</option></select></div>
         <div class="chart-header">
-          <p class="panel-title" id="chartTitle">2° Caras de Tabiqueria</p>
+          <p class="panel-title" id="chartTitle">Todas las partidas</p>
           <div style="display:flex;align-items:center;gap:10px;">
-            <span class="chart-tag" id="chartTag">56 deptos ejecutados en total</span>
-            <button class="btn-toggle btn-mail" id="btnMail" style="display: inline-flex;">✉ Enviar por correo</button>
+            <span class="chart-tag" id="chartTag">3875 deptos ejecutados en total</span>
+            <button class="btn-toggle btn-mail" id="btnMail" style="display:none;">✉ Enviar por correo</button>
           </div>
         </div>
         <div class="chart-canvas-wrap">
           <canvas id="mainChart"></canvas>
         </div>
-        <div class="stats-row" id="statsRow" style="display: grid;">
+        <div class="stats-row" id="statsRow" style="display:none;">
           <div class="stat-block">
             <p class="stat-label">Promedio semanal actual</p>
-            <p class="stat-value" id="statWeekly">3.3 deptos/sem</p>
-            <p class="stat-sub" id="statWeeklySub">desde semana 7 (17 sem. activas)</p>
+            <p class="stat-value" id="statWeekly">—</p>
+            <p class="stat-sub" id="statWeeklySub"></p>
           </div>
           <div class="stat-block">
             <p class="stat-label">Promedio diario actual</p>
-            <p class="stat-value" id="statDaily">0.66 deptos/día hábil</p>
+            <p class="stat-value" id="statDaily">—</p>
           </div>
           <div class="stat-block">
             <p class="stat-label">Fecha término (programa)</p>
-            <p class="stat-value" id="statProgramEnd">21-oct-2026</p>
-            <p class="stat-sub" id="statProgramEndSub">inicio programa: 22-jun-2026</p>
+            <p class="stat-value" id="statProgramEnd">—</p>
+            <p class="stat-sub" id="statProgramEndSub"></p>
           </div>
           <div class="stat-block stat-block-req">
             <p class="stat-label">Ritmo semanal requerido</p>
-            <p class="stat-value" id="statReqWeekly" style="color: var(--red);">20.0 deptos/sem</p>
+            <p class="stat-value" id="statReqWeekly">—</p>
           </div>
           <div class="stat-block stat-block-req">
             <p class="stat-label">Ritmo diario requerido</p>
-            <p class="stat-value" id="statReqDaily" style="color: var(--red);">4.00 deptos/día</p>
+            <p class="stat-value" id="statReqDaily">—</p>
           </div>
           <div class="stat-block stat-block-proj">
             <p class="stat-label">Proyección con ritmo actual</p>
-            <p class="stat-value" id="statProjection" style="color: var(--red);">17-dic-2026</p>
-            <p class="stat-sub" id="statProjectionSub">32 deptos restantes · ~49 días hábiles · detrás del programa</p>
+            <p class="stat-value" id="statProjection">—</p>
+            <p class="stat-sub" id="statProjectionSub"></p>
           </div>
         </div>
       </div>
@@ -422,7 +431,7 @@ html{-webkit-text-size-adjust:100%;}
         <div class="heatmap-controls">
           <select class="search-box" id="scurveSelect" style="max-width:360px;margin-bottom:0;"><option value="">Todo el proyecto (todas las partidas)</option><option value="Revision Muros Losas Trazador / Supervisor">Revision Muros Losas Trazador / Supervisor</option><option value="Descarachado, Rinconeos">Descarachado, Rinconeos</option><option value="Puntereos Rasgos, Pisos Terrazas y Desbastes Muros">Puntereos Rasgos, Pisos Terrazas y Desbastes Muros</option><option value="Pulidos Cielos">Pulidos Cielos</option><option value="Pulidos Muros">Pulidos Muros</option><option value="Trazado barandas">Trazado barandas</option><option value="Instalación de Barandas en Terraza">Instalación de Barandas en Terraza</option><option value="Protección Barandas en Terrazas">Protección Barandas en Terrazas</option><option value="Rasgos Ventanas">Rasgos Ventanas</option><option value="Rectificar Puntos eléctricos">Rectificar Puntos eléctricos</option><option value="Rectificar Pasadas Ventilacion cocinas / Shaft Baños">Rectificar Pasadas Ventilacion cocinas / Shaft Baños</option><option value="Quemados muros y cielo con Acido Muriatico">Quemados muros y cielo con Acido Muriatico</option><option value="Afinado y nivel grada buque">Afinado y nivel grada buque</option><option value="Albañilería Muros Cocina y baños/ puntual">Albañilería Muros Cocina y baños/ puntual</option><option value="Estuco Rasgos Ventanas">Estuco Rasgos Ventanas</option><option value="Maquillaje y fileteos Rasgos Ventanas">Maquillaje y fileteos Rasgos Ventanas</option><option value="Maquillajes cielo Terraza">Maquillajes cielo Terraza</option><option value="Vertical Alcantarillado ">Vertical Alcantarillado </option><option value="Pruebas descargas de alcantarillado">Pruebas descargas de alcantarillado</option><option value="Vertical Ductos Extracción">Vertical Ductos Extracción</option><option value="Embarrilado Descargas">Embarrilado Descargas</option><option value="Despeje Puntos Electricos">Despeje Puntos Electricos</option><option value="Despeje Almoadillas Sanitarias Agua. P">Despeje Almoadillas Sanitarias Agua. P</option><option value="Impermeabilización Rasgos Ventanas">Impermeabilización Rasgos Ventanas</option><option value="Trazado Departamento">Trazado Departamento</option><option value="Pino Impreganado para Grada Buque en Shaft">Pino Impreganado para Grada Buque en Shaft</option><option value="Tuberías Electricas curvas para Tabiques">Tuberías Electricas curvas para Tabiques</option><option value="Reparaciones Sanitarias (Picados) Tabiques">Reparaciones Sanitarias (Picados) Tabiques</option><option value="Reparacion Mortero Instalaciones">Reparacion Mortero Instalaciones</option><option value="Estructuración y 1° Caras Tabiquería">Estructuración y 1° Caras Tabiquería</option><option value="Instalacioón Electrica en Tabiqueria">Instalacioón Electrica en Tabiqueria</option><option value="Instalación Sanitaria en Tabiqueria">Instalación Sanitaria en Tabiqueria</option><option value="Instalación Extracción en Tabiquería">Instalación Extracción en Tabiquería</option><option value="Instalación Refuerzos ( TV, Accesorios, Vanitorio, etc.)">Instalación Refuerzos ( TV, Accesorios, Vanitorio, etc.)</option><option value="Prueba de agua (mantener con presión)">Prueba de agua (mantener con presión)</option><option value="2° Caras de Tabiqueria">2° Caras de Tabiqueria</option><option value="Niveles Trazado">Niveles Trazado</option><option value="Dinteles, Vigones, zócalos  cielo Falso">Dinteles, Vigones, zócalos  cielo Falso</option><option value="Aislación Muros Perimetral (Volcapol)">Aislación Muros Perimetral (Volcapol)</option><option value="Alambrado Enchufes / Iluminación">Alambrado Enchufes / Iluminación</option><option value="Enlauchado Eléctrico Corrientes Débiles">Enlauchado Eléctrico Corrientes Débiles</option><option value="Yeso Cielos">Yeso Cielos</option><option value="Yeso  Muros, Cuadraturas Cajas, Canterias etc.">Yeso  Muros, Cuadraturas Cajas, Canterias etc.</option><option value="Huinchas, esquineros">Huinchas, esquineros</option><option value="Lineas en general">Lineas en general</option><option value="Descontaminar losas con pulido">Descontaminar losas con pulido</option><option value="Impermeabilización">Impermeabilización</option><option value="Encatrado Tinas">Encatrado Tinas</option><option value="Encatrado Receptáculos">Encatrado Receptáculos</option><option value="Instalación Tinas">Instalación Tinas</option><option value="Instalación Marco Ventanas">Instalación Marco Ventanas</option><option value="Instalación Hojas de Ventana y fijos.">Instalación Hojas de Ventana y fijos.</option><option value="Instalacion Receptáculos">Instalacion Receptáculos</option><option value="Faldon Tinas / Receptaculos/ Zocalos y base Cubierta">Faldon Tinas / Receptaculos/ Zocalos y base Cubierta</option><option value="Nivelación Pisos/ Reparación sectores">Nivelación Pisos/ Reparación sectores</option><option value="Instalación Piernas Closet y Cenefa">Instalación Piernas Closet y Cenefa</option><option value="Instalacion Puertas">Instalacion Puertas</option><option value="Pilastras ">Pilastras </option><option value="Cerraduras General">Cerraduras General</option><option value="Impermeabilización ">Impermeabilización </option><option value="Cerámica Piso Terraza">Cerámica Piso Terraza</option><option value="Cerámica Piso Cocina">Cerámica Piso Cocina</option><option value="Cerámica Piso Baño">Cerámica Piso Baño</option><option value="Cerámica Muros Baño ">Cerámica Muros Baño </option><option value="Cerámica Muros Cocina">Cerámica Muros Cocina</option><option value="Fragues Cerámica piso y muro">Fragues Cerámica piso y muro</option><option value="Instalación perfiles aluminio baños">Instalación perfiles aluminio baños</option><option value="Instalación cornisas">Instalación cornisas</option><option value="1° - 2° Manos Empaste Cielos ">1° - 2° Manos Empaste Cielos </option><option value="1° - 2° Manos Empaste Muros, tabiques">1° - 2° Manos Empaste Muros, tabiques</option><option value="Pintura Fondo Closet">Pintura Fondo Closet</option><option value="Remate Cornisas">Remate Cornisas</option><option value="1° manos Pintura Cielos Baños y Muros Cocinas">1° manos Pintura Cielos Baños y Muros Cocinas</option><option value="Instalación Mueble Vanitorio en Baños">Instalación Mueble Vanitorio en Baños</option><option value="Instalacion Muebles Bases">Instalacion Muebles Bases</option><option value="Interiores de Closet">Interiores de Closet</option><option value="Quincalleria Ventanas">Quincalleria Ventanas</option><option value="Losalin">Losalin</option><option value="Instalacion Muebles Aereo en Cocina">Instalacion Muebles Aereo en Cocina</option><option value="Sello Muros y 1° Manos Pintura Muros Perimetrales">Sello Muros y 1° Manos Pintura Muros Perimetrales</option><option value="Pintura Sello Puertas ">Pintura Sello Puertas </option><option value="Colocación Guardapolvos Laminados">Colocación Guardapolvos Laminados</option><option value="Instalacion Cubiertas Muebles Cocinas">Instalacion Cubiertas Muebles Cocinas</option><option value="Instalacion Cubiertas Muebles Vanitorios">Instalacion Cubiertas Muebles Vanitorios</option><option value="Modulación Eléctrica ">Modulación Eléctrica </option><option value="Instalación Tablero Eléctrico">Instalación Tablero Eléctrico</option><option value="Instalacion Lavaplatos">Instalacion Lavaplatos</option><option value="Instalacion Griferias ">Instalacion Griferias </option><option value="Instalacion Artefactos Sanitarios WC">Instalacion Artefactos Sanitarios WC</option><option value="Instalacion Rejilla Extraccion">Instalacion Rejilla Extraccion</option><option value="Instalación Piso Flotante">Instalación Piso Flotante</option><option value="Instalación Junquillos">Instalación Junquillos</option><option value="Puerta Closet">Puerta Closet</option><option value="Topes Puerta">Topes Puerta</option><option value="Papel Mural">Papel Mural</option><option value="Tapa Artefactos Electricos y Luminarias">Tapa Artefactos Electricos y Luminarias</option><option value="Sellos y Detalles">Sellos y Detalles</option><option value="Instalacion Campana &amp; Horno">Instalacion Campana &amp; Horno</option><option value="Instalacion Encimera">Instalacion Encimera</option><option value="Instalacion Cubrejunta">Instalacion Cubrejunta</option><option value="Pintura Final General">Pintura Final General</option><option value="Instalación Espejos">Instalación Espejos</option><option value="Instalación Accesorios">Instalación Accesorios</option><option value="Limpieza Fina">Limpieza Fina</option><option value="R1">R1</option><option value="RF">RF</option></select>
         </div>
-        <div class="scurve-kpis" id="scurveKpis"><div class="scurve-kpi"><div class="k">Total deptos</div><div class="v">88</div></div><div class="scurve-kpi"><div class="k">Programado a la fecha</div><div class="v" style="color:#f5a524">79 <small>(90.1%)</small></div></div><div class="scurve-kpi"><div class="k">Ejecutado</div><div class="v" style="color:#4aa8ff">56 <small>(63.6%)</small></div></div><div class="scurve-kpi"><div class="k">Desviación</div><div class="v" style="color:#ff5d5d">-23 deptos</div></div></div>
+        <div class="scurve-kpis" id="scurveKpis"><div class="scurve-kpi"><div class="k">Total deptos</div><div class="v">9322</div></div><div class="scurve-kpi"><div class="k">Programado a la fecha</div><div class="v" style="color:#f5a524">5255 <small>(56.4%)</small></div></div><div class="scurve-kpi"><div class="k">Ejecutado</div><div class="v" style="color:#4aa8ff">3875 <small>(41.6%)</small></div></div><div class="scurve-kpi"><div class="k">Desviación</div><div class="v" style="color:#ff5d5d">-1379 deptos</div></div></div>
         <div class="chart-canvas-wrap" style="height:340px;">
           <canvas id="scurveChart"></canvas>
         </div>
@@ -456,6 +465,40 @@ html{-webkit-text-size-adjust:100%;}
             <tbody id="ritmoTableBody"></tbody>
           </table>
         </div>
+      </div>
+
+      <div class="panel" id="proyPanel">
+        <div class="chart-header">
+          <p class="panel-title">Proyección de término, tendencia y ruta crítica</p>
+          <span class="chart-tag" id="proyTag">ritmo de las últimas 4 semanas · 24 partidas</span>
+        </div>
+        <div class="scurve-kpis" id="proyKpis"><div class="scurve-kpi"><div class="k">Término programado obra</div><div class="v">30-abr-2027</div></div><div class="scurve-kpi"><div class="k">Término proyectado (ritmo reciente)</div><div class="v" style="color:#4aa8ff">21-sep-2027</div><div style="font-size:10px;color:#8b94a3;margin-top:2px">sin contar 17 partidas sin ritmo</div></div><div class="scurve-kpi"><div class="k">Peor desvío de una partida</div><div class="v" style="color:#ff5d5d">+197 días háb.</div><div style="font-size:10px;color:#8b94a3;margin-top:2px;max-width:200px">Cerámica Muros Baño </div></div><div class="scurve-kpi"><div class="k">Partidas con atraso proyectado</div><div class="v">61</div></div><div class="scurve-kpi"><div class="k">En curso sin ritmo reciente</div><div class="v" style="color:#ff5d5d">17</div></div></div>
+        <div class="heatmap-controls" style="margin-top:14px;">
+          <p class="proy-sub" style="margin:0;">Cuellos de botella: partidas que frenan a la siguiente y la dejan sin frentes</p>
+          <div style="display:flex;gap:8px;">
+            <button class="btn-toggle" id="btnBnAll">Todas las partidas</button>
+            <button class="btn-toggle active" id="btnBnCrit">Solo críticas</button>
+          </div>
+        </div>
+        <div id="proyBottlenecks" class="proy-bn"><div class="bn"><b>Yeso Cielos</b> frena a <b>Yeso  Muros, Cuadraturas Cajas, Canterias etc.</b>: hay <b>2</b> frentes disponibles y se necesitan ~10 por semana → se queda sin trabajo en ~1 día háb. · 39 deptos de Yeso  Muros, Cuadraturas Cajas, Canterias etc. dependen de que Yeso Cielos los termine</div><div class="bn"><b>Instalación Marco Ventanas</b> frena a <b>Instalación Hojas de Ventana y fijos.</b>: hay <b>0</b> frentes disponibles y se necesitan ~8 por semana → <b style="color:#ff5d5d">sin frentes hoy</b> · 36 deptos de Instalación Hojas de Ventana y fijos. dependen de que Instalación Marco Ventanas los termine</div><div class="bn"><b>Cerámica Piso Cocina</b> frena a <b>Cerámica Piso Baño</b>: hay <b>0</b> frentes disponibles y se necesitan ~7 por semana → <b style="color:#ff5d5d">sin frentes hoy</b> · 68 deptos de Cerámica Piso Baño dependen de que Cerámica Piso Cocina los termine</div><div class="bn"><b>Cerámica Muros Baño </b> frena a <b>Cerámica Muros Cocina</b>: hay <b>0</b> frentes disponibles y se necesitan ~7 por semana → <b style="color:#ff5d5d">sin frentes hoy</b> · 72 deptos de Cerámica Muros Cocina dependen de que Cerámica Muros Baño  los termine</div><div class="bn"><b>Cerámica Piso Terraza</b> frena a <b>Cerámica Piso Cocina</b>: hay <b>1</b> frentes disponibles y se necesitan ~8 por semana → se queda sin trabajo en ~1 día háb. · 68 deptos de Cerámica Piso Cocina dependen de que Cerámica Piso Terraza los termine</div><div class="bn"><b>Instalación Mueble Vanitorio en Baños</b> frena a <b>Instalacion Muebles Bases</b>: hay <b>0</b> frentes disponibles y se necesitan ~6 por semana → <b style="color:#ff5d5d">sin frentes hoy</b> · 80 deptos de Instalacion Muebles Bases dependen de que Instalación Mueble Vanitorio en Baños los termine</div><div class="bn"><b>Yeso  Muros, Cuadraturas Cajas, Canterias etc.</b> frena a <b>Instalación Marco Ventanas</b>: hay <b>2</b> frentes disponibles y se necesitan ~8 por semana → se queda sin trabajo en ~1 día háb. · 34 deptos de Instalación Marco Ventanas dependen de que Yeso  Muros, Cuadraturas Cajas, Canterias etc. los termine</div><div class="bn"><b>Cerámica Muros Cocina</b> frena a <b>Fragues Cerámica piso y muro</b>: hay <b>2</b> frentes disponibles y se necesitan ~7 por semana → se queda sin trabajo en ~1 día háb. · 72 deptos de Fragues Cerámica piso y muro dependen de que Cerámica Muros Cocina los termine</div><div class="bn-none">…y 7 más (ver tabla).</div></div>
+        <div class="ritmo-table-scroll">
+          <table class="ritmo-table" id="proyTable">
+            <thead>
+              <tr>
+                <th class="rt-name">Partida</th>
+                <th>Ritmo reciente</th>
+                <th>Tendencia</th>
+                <th>Término programado</th>
+                <th>Término proyectado</th>
+                <th>Desvío (días háb.)</th>
+                <th>Frentes disponibles</th>
+                <th>Frena a</th>
+              </tr>
+            </thead>
+            <tbody id="proyTableBody"><tr class="" data-p="Instalación Mueble Vanitorio en Baños"><td class="rt-name">Instalación Mueble Vanitorio en Baños</td><td class="rt-num">0.0 /sem</td><td class="rt-num tr-flat">—</td><td class="rt-num">05-ene-2027</td><td class="rt-num pv-bad">Sin ritmo</td><td class="rt-num pv-bad">—</td><td class="rt-num ">14 <small style="color:#8b94a3">(nec. 7/sem)</small></td><td class="rt-num">80 deptos de Instalacion Muebles Bases</td></tr><tr class="" data-p="Instalación Piso Flotante"><td class="rt-name">Instalación Piso Flotante</td><td class="rt-num">0.0 /sem</td><td class="rt-num tr-flat">—</td><td class="rt-num">02-feb-2027</td><td class="rt-num pv-bad">Sin ritmo</td><td class="rt-num pv-bad">—</td><td class="rt-num ">15 <small style="color:#8b94a3">(nec. 5/sem)</small></td><td class="rt-num">88 deptos de Papel Mural</td></tr><tr class="" data-p="Cerámica Muros Baño "><td class="rt-name">Cerámica Muros Baño </td><td class="rt-num">1.5 /sem</td><td class="rt-num tr-down">▼ baja 80%</td><td class="rt-num">18-dic-2026</td><td class="rt-num">21-sep-2027</td><td class="rt-num pv-bad">+197</td><td class="rt-num pv-bad">6 <small style="color:#8b94a3">(nec. 7/sem)</small></td><td class="rt-num">72 deptos de Cerámica Muros Cocina</td></tr><tr class="" data-p="Instalacion Puertas"><td class="rt-name">Instalacion Puertas</td><td class="rt-num">2.5 /sem</td><td class="rt-num tr-down">▼ baja 57%</td><td class="rt-num">03-dic-2026</td><td class="rt-num">23-abr-2027</td><td class="rt-num pv-bad">+101</td><td class="rt-num ">22 <small style="color:#8b94a3">(nec. 9/sem)</small></td><td class="rt-num">68 deptos de Cerámica Piso Terraza</td></tr><tr class="" data-p="Cerámica Piso Cocina"><td class="rt-name">Cerámica Piso Cocina</td><td class="rt-num">2.5 /sem</td><td class="rt-num tr-flat">► estable</td><td class="rt-num">14-dic-2026</td><td class="rt-num">21-abr-2027</td><td class="rt-num pv-bad">+92</td><td class="rt-num pv-bad">1 <small style="color:#8b94a3">(nec. 8/sem)</small></td><td class="rt-num">68 deptos de Cerámica Piso Baño</td></tr><tr class="" data-p="Cerámica Piso Terraza"><td class="rt-name">Cerámica Piso Terraza</td><td class="rt-num">3.0 /sem</td><td class="rt-num tr-up">▲ sube 100%</td><td class="rt-num">11-dic-2026</td><td class="rt-num">01-abr-2027</td><td class="rt-num pv-bad">+79</td><td class="rt-num pv-bad">6 <small style="color:#8b94a3">(nec. 8/sem)</small></td><td class="rt-num">68 deptos de Cerámica Piso Cocina</td></tr><tr class="" data-p="Cerámica Muros Cocina"><td class="rt-name">Cerámica Muros Cocina</td><td class="rt-num">2.8 /sem</td><td class="rt-num tr-down">▼ baja 43%</td><td class="rt-num">23-dic-2026</td><td class="rt-num">12-abr-2027</td><td class="rt-num pv-bad">+78</td><td class="rt-num pv-bad">0 <small style="color:#8b94a3">(nec. 7/sem)</small></td><td class="rt-num">72 deptos de Fragues Cerámica piso y muro</td></tr><tr class="" data-p="2° Caras de Tabiqueria"><td class="rt-name">2° Caras de Tabiqueria</td><td class="rt-num">2.0 /sem</td><td class="rt-num tr-flat">► estable</td><td class="rt-num">21-oct-2026</td><td class="rt-num">29-ene-2027</td><td class="rt-num pv-bad">+72</td><td class="rt-num pv-bad">19 <small style="color:#8b94a3">(nec. 20/sem)</small></td><td class="rt-num">32 deptos de Yeso Cielos</td></tr><tr class="" data-p="Cerámica Piso Baño"><td class="rt-name">Cerámica Piso Baño</td><td class="rt-num">3.0 /sem</td><td class="rt-num tr-down">▼ baja 50%</td><td class="rt-num">15-dic-2026</td><td class="rt-num">18-mar-2027</td><td class="rt-num pv-bad">+67</td><td class="rt-num pv-bad">0 <small style="color:#8b94a3">(nec. 7/sem)</small></td><td class="rt-num">68 deptos de Cerámica Muros Baño </td></tr><tr class="" data-p="Instalación de Barandas en Terraza"><td class="rt-name">Instalación de Barandas en Terraza</td><td class="rt-num">4.3 /sem</td><td class="rt-num tr-up">▲ sube 83%</td><td class="rt-num">10-sep-2026</td><td class="rt-num">18-nov-2026</td><td class="rt-num pv-bad">+49</td><td class="rt-num ">16 <small style="color:#8b94a3">(nec. 4/sem)</small></td><td class="rt-num">7 deptos de Trazado Departamento</td></tr><tr class="" data-p="Pulidos Cielos"><td class="rt-name">Pulidos Cielos</td><td class="rt-num">2.3 /sem</td><td class="rt-num tr-up">▲ sube 100%</td><td class="rt-num">07-sep-2026</td><td class="rt-num">04-nov-2026</td><td class="rt-num pv-bad">+42</td><td class="rt-num">—</td><td class="rt-num">2 deptos de Pulidos Muros</td></tr><tr class="" data-p="Instalacion Muebles Bases"><td class="rt-name">Instalacion Muebles Bases</td><td class="rt-num">4.0 /sem</td><td class="rt-num tr-up">▲ nueva</td><td class="rt-num">06-ene-2027</td><td class="rt-num">26-feb-2027</td><td class="rt-num pv-bad">+37</td><td class="rt-num pv-bad">0 <small style="color:#8b94a3">(nec. 6/sem)</small></td><td class="rt-num">72 deptos de Interiores de Closet</td></tr><tr class="" data-p="Yeso  Muros, Cuadraturas Cajas, Canterias etc."><td class="rt-name">Yeso  Muros, Cuadraturas Cajas, Canterias etc.</td><td class="rt-num">3.8 /sem</td><td class="rt-num tr-flat">► estable</td><td class="rt-num">06-nov-2026</td><td class="rt-num">25-dic-2026</td><td class="rt-num pv-bad">+35</td><td class="rt-num pv-bad">2 <small style="color:#8b94a3">(nec. 10/sem)</small></td><td class="rt-num">34 deptos de Instalación Marco Ventanas</td></tr><tr class="" data-p="Pulidos Muros"><td class="rt-name">Pulidos Muros</td><td class="rt-num">1.5 /sem</td><td class="rt-num tr-up">▲ nueva</td><td class="rt-num">08-sep-2026</td><td class="rt-num">20-oct-2026</td><td class="rt-num pv-bad">+30</td><td class="rt-num pv-bad">0 <small style="color:#8b94a3">(nec. 2/sem)</small></td><td class="rt-num">2 deptos de Trazado barandas</td></tr><tr class="" data-p="Trazado barandas"><td class="rt-name">Trazado barandas</td><td class="rt-num">4.3 /sem</td><td class="rt-num tr-up">▲ sube 140%</td><td class="rt-num">09-sep-2026</td><td class="rt-num">21-oct-2026</td><td class="rt-num pv-bad">+30</td><td class="rt-num ">5 <small style="color:#8b94a3">(nec. 4/sem)</small></td><td class="rt-num">7 deptos de Instalación de Barandas en Terraza</td></tr><tr class="" data-p="Yeso Cielos"><td class="rt-name">Yeso Cielos</td><td class="rt-num">4.3 /sem</td><td class="rt-num tr-flat">► estable</td><td class="rt-num">03-nov-2026</td><td class="rt-num">14-dic-2026</td><td class="rt-num pv-bad">+29</td><td class="rt-num pv-bad">7 <small style="color:#8b94a3">(nec. 11/sem)</small></td><td class="rt-num">39 deptos de Yeso  Muros, Cuadraturas Cajas, Canterias etc.</td></tr><tr class="" data-p="Estructuración y 1° Caras Tabiquería"><td class="rt-name">Estructuración y 1° Caras Tabiquería</td><td class="rt-num">4.0 /sem</td><td class="rt-num tr-up">▲ sube 120%</td><td class="rt-num">09-oct-2026</td><td class="rt-num">03-nov-2026</td><td class="rt-num pv-bad">+17</td><td class="rt-num ">5 <small style="color:#8b94a3">(nec. 4/sem)</small></td><td class="rt-num">13 deptos de 2° Caras de Tabiqueria</td></tr><tr class="" data-p="Nivelación Pisos/ Reparación sectores"><td class="rt-name">Nivelación Pisos/ Reparación sectores</td><td class="rt-num">5.0 /sem</td><td class="rt-num tr-up">▲ sube 133%</td><td class="rt-num">24-nov-2026</td><td class="rt-num">16-dic-2026</td><td class="rt-num pv-bad">+16</td><td class="rt-num ">12 <small style="color:#8b94a3">(nec. 8/sem)</small></td><td class="rt-num">48 deptos de Instalacion Puertas</td></tr><tr class="" data-p="Trazado Departamento"><td class="rt-name">Trazado Departamento</td><td class="rt-num">4.0 /sem</td><td class="rt-num tr-up">▲ sube 120%</td><td class="rt-num">02-oct-2026</td><td class="rt-num">23-oct-2026</td><td class="rt-num pv-bad">+15</td><td class="rt-num pv-bad">1 <small style="color:#8b94a3">(nec. 4/sem)</small></td><td class="rt-num">8 deptos de Estructuración y 1° Caras Tabiquería</td></tr><tr class="" data-p="Interiores de Closet"><td class="rt-name">Interiores de Closet</td><td class="rt-num">5.0 /sem</td><td class="rt-num tr-up">▲ sube 300%</td><td class="rt-num">07-ene-2027</td><td class="rt-num">20-ene-2027</td><td class="rt-num pv-bad">+9</td><td class="rt-num pv-bad">1 <small style="color:#8b94a3">(nec. 6/sem)</small></td><td class="rt-num">73 deptos de Instalación Piso Flotante</td></tr><tr class="" data-p="Papel Mural"><td class="rt-name">Papel Mural</td><td class="rt-num">0.0 /sem</td><td class="rt-num tr-flat">—</td><td class="rt-num">10-feb-2027</td><td class="rt-num">Según programa</td><td class="rt-num">—</td><td class="rt-num ">0</td><td class="rt-num">—</td></tr><tr class="" data-p="Fragues Cerámica piso y muro"><td class="rt-name">Fragues Cerámica piso y muro</td><td class="rt-num">7.0 /sem</td><td class="rt-num tr-up">▲ nueva</td><td class="rt-num">24-dic-2026</td><td class="rt-num">23-dic-2026</td><td class="rt-num pv-good">-1</td><td class="rt-num pv-bad">2 <small style="color:#8b94a3">(nec. 7/sem)</small></td><td class="rt-num">74 deptos de Instalación Mueble Vanitorio en Baños</td></tr><tr class="" data-p="Instalación Marco Ventanas"><td class="rt-name">Instalación Marco Ventanas</td><td class="rt-num">8.0 /sem</td><td class="rt-num tr-down">▼ baja 32%</td><td class="rt-num">18-nov-2026</td><td class="rt-num">11-nov-2026</td><td class="rt-num pv-good">-5</td><td class="rt-num pv-bad">2 <small style="color:#8b94a3">(nec. 8/sem)</small></td><td class="rt-num">36 deptos de Instalación Hojas de Ventana y fijos.</td></tr><tr class="" data-p="Instalación Hojas de Ventana y fijos."><td class="rt-name">Instalación Hojas de Ventana y fijos.</td><td class="rt-num">8.0 /sem</td><td class="rt-num tr-down">▼ baja 32%</td><td class="rt-num">19-nov-2026</td><td class="rt-num">11-nov-2026</td><td class="rt-num pv-good">-6</td><td class="rt-num pv-bad">0 <small style="color:#8b94a3">(nec. 8/sem)</small></td><td class="rt-num">36 deptos de Nivelación Pisos/ Reparación sectores</td></tr></tbody>
+          </table>
+        </div>
+        <p class="scurve-note">Ritmo reciente: promedio de las últimas 4 semanas (o desde que la partida inició). Tendencia: últimas 2 semanas vs. las 2 anteriores. Frentes disponibles: deptos terminados en la partida anterior (según el orden del Excel) que aún no se ejecutan en esta. "Frena a": deptos de la partida siguiente que no pueden avanzar porque esta no los ha terminado.</p>
       </div>
 
       <div class="panel">
@@ -828,6 +871,7 @@ function render(){
   renderCurvesChart();
   renderSCurve();
   renderRitmoTable();
+  renderProyeccion();
   populatePtsWeekSelect();
   renderMobilePartidaSelect();
 }
@@ -1572,6 +1616,186 @@ document.getElementById('ritmoSearchBox').addEventListener('input', renderRitmoT
 document.getElementById('btnRitmoCritical').addEventListener('click', ()=>{ state.ritmoMode='critical'; renderRitmoTable(); });
 document.getElementById('btnRitmoAll').addEventListener('click', ()=>{ state.ritmoMode='all'; renderRitmoTable(); });
 document.getElementById('btnRitmoAtrasadas').addEventListener('click', ()=>{ state.ritmoMode='atrasadas'; renderRitmoTable(); });
+
+// ---------- Proyección, tendencia, ruta crítica y frentes ----------
+const RECENT_WEEKS = 4;
+let proyBnMode = 'all';
+let _paintedCache = {ref:null,set:null};
+function paintedSetCached(){
+  if(_paintedCache.ref !== state.snapshot.painted){ _paintedCache = {ref:state.snapshot.painted, set:new Set(state.snapshot.painted)}; }
+  return _paintedCache.set;
+}
+function doneDeptSet(p){
+  const row = EMBEDDED_DATA.partidaRow[p];
+  const order = EMBEDDED_DATA.partidaDeptOrder[p] || [];
+  const painted = paintedSetCached();
+  const done = new Set(), all = [];
+  for(const pair of order){ all.push(pair[1]); if(painted.has(row+'_'+pair[0])) done.add(pair[1]); }
+  return {done, all};
+}
+function weekSum(p, from, to){
+  const wk = state.matrix.agg[p] || {};
+  let a=0; for(let s=Math.max(1,from); s<=to; s++) a += (wk[String(s)]||0);
+  return a;
+}
+function recentInfo(p){
+  const n = state.matrix.semanaLabels.length;
+  const sw = firstActiveWeek(p);
+  if(!sw) return {weekly:0, daily:0, trend:null};
+  const from = Math.max(sw, n-RECENT_WEEKS+1);
+  const w = n-from+1;
+  const weekly = weekSum(p, from, n)/w;
+  // tendencia: últimas 2 semanas vs 2 anteriores
+  const last2 = weekSum(p, n-1, n)/Math.min(2, n-Math.max(1,n-1)+1);
+  const prevFrom = Math.max(1,n-3), prevTo = n-2;
+  const prev2 = prevTo>=prevFrom ? weekSum(p, prevFrom, prevTo)/(prevTo-prevFrom+1) : 0;
+  let trend;
+  if(prev2===0 && last2===0) trend=['■ sin avance','tr-flat'];
+  else if(prev2===0) trend=['▲ nueva','tr-up'];
+  else {
+    const r = last2/prev2;
+    if(r>=1.15) trend=['▲ sube '+Math.round((r-1)*100)+'%','tr-up'];
+    else if(r<=0.85) trend=['▼ baja '+Math.round((1-r)*100)+'%','tr-down'];
+    else trend=['► estable','tr-flat'];
+  }
+  return {weekly, daily:weekly/5, trend};
+}
+function projectionFor(p){
+  const s = computePartidaStats(p);
+  const ri = recentInfo(p);
+  const lastDate = parseISODate(state.matrix.semanaDates[state.matrix.semanaDates.length-1]);
+  let projected=null, noPace=false, delay=null;
+  if(s.status==='done') { /* sin proyección */ }
+  else if(s.status==='not_started'){ projected = s.programEndDate; }
+  else if(ri.daily>0){
+    projected = addBusinessDays(lastDate, Math.ceil(s.remaining/ri.daily));
+  } else if(ri.daily===0 && (firstActiveWeek(p) || s.programStartDate)) noPace = true;
+  if(projected && s.programEndDate){
+    delay = projected>s.programEndDate ? businessDaysBetween(s.programEndDate, projected) : -businessDaysBetween(projected, s.programEndDate);
+  }
+  return {s, ri, projected, noPace, delay};
+}
+function renderProyeccion(){
+  const tbody = document.getElementById('proyTableBody');
+  if(!tbody) return;
+  document.getElementById('btnBnAll').classList.toggle('active', proyBnMode==='all');
+  document.getElementById('btnBnCrit').classList.toggle('active', proyBnMode==='critical');
+  const order = state.matrix.partidaOrder;
+  const info = {}; order.forEach(p=>{ info[p]=projectionFor(p); });
+  const sets = {}; order.forEach(p=>{ sets[p]=doneDeptSet(p); });
+
+  // frentes disponibles y bloqueos (dependencia = orden del Excel; en modo críticas, solo entre críticas)
+  const seq = proyBnMode==='critical' ? order.filter(p=>EMBEDDED_DATA.criticalPartidas.includes(p)) : order;
+  const fr = {}, bloq = {}, succOf = {};
+  order.forEach(p=>{ fr[p]=null; bloq[p]=null; succOf[p]=null; });
+  seq.forEach((p,i)=>{
+    if(i>0){
+      const pd = sets[seq[i-1]].done, me = sets[p];
+      let c=0; me.all.forEach(d=>{ if(pd.has(d) && !me.done.has(d)) c++; });
+      fr[p]=c;
+    }
+    if(i<seq.length-1){
+      const sc = sets[seq[i+1]], mine = sets[p];
+      let c=0; sc.all.forEach(d=>{ if(mine.all.includes(d) && !mine.done.has(d) && !sc.done.has(d)) c++; });
+      bloq[p]=c; succOf[p]=seq[i+1];
+    }
+  });
+  const need = p=>{ const x=info[p]; return Math.max(x.ri.weekly, x.s.reqWeekly||0); };
+
+  // KPIs de obra
+  let progEnd=null, projEnd=null, sinRitmo=0, atrasadasN=0;
+  order.forEach(p=>{
+    const x=info[p];
+    if(x.s.programEndDate && (!progEnd || x.s.programEndDate>progEnd)) progEnd=x.s.programEndDate;
+    if(x.projected && (!projEnd || x.projected>projEnd)) projEnd=x.projected;
+    if(x.noPace) sinRitmo++;
+    if(x.delay!==null && x.delay>0) atrasadasN++;
+  });
+  let worst=null; order.forEach(p=>{ const x=info[p]; if(x.delay!==null && x.delay>0 && (!worst || x.delay>worst.delay)) worst={p, delay:x.delay}; });
+  let obraDelay=null;
+  if(progEnd && projEnd) obraDelay = projEnd>progEnd ? businessDaysBetween(progEnd, projEnd) : -businessDaysBetween(projEnd, progEnd);
+  const cd = obraDelay===null ? '#8b94a3' : (obraDelay>0?'#ff5d5d':'#3ddc97');
+  document.getElementById('proyKpis').innerHTML =
+    '<div class="scurve-kpi"><div class="k">Término programado obra</div><div class="v">'+(progEnd?formatDateEs(progEnd):'—')+'</div></div>'+
+    '<div class="scurve-kpi"><div class="k">Término proyectado (ritmo reciente)</div><div class="v" style="color:#4aa8ff">'+(projEnd?formatDateEs(projEnd):'—')+'</div>'+(sinRitmo?'<div style="font-size:10px;color:#8b94a3;margin-top:2px">sin contar '+sinRitmo+' partidas sin ritmo</div>':'')+'</div>'+
+    '<div class="scurve-kpi"><div class="k">Peor desvío de una partida</div><div class="v" style="color:'+(worst?'#ff5d5d':'#3ddc97')+'">'+(worst?'+'+worst.delay+' días háb.':'0 días')+'</div>'+(worst?'<div style="font-size:10px;color:#8b94a3;margin-top:2px;max-width:200px">'+worst.p.slice(0,34)+'</div>':'')+'</div>'+
+    '<div class="scurve-kpi"><div class="k">Partidas con atraso proyectado</div><div class="v">'+atrasadasN+'</div>'+'</div>'+
+    '<div class="scurve-kpi"><div class="k">En curso sin ritmo reciente</div><div class="v" style="color:'+(sinRitmo?'#ff5d5d':'#3ddc97')+'">'+sinRitmo+'</div></div>';
+
+  // cuellos de botella (todas las partidas)
+  const bn = [];
+  seq.forEach((p,i)=>{
+    if(i>=seq.length-1) return;
+    const sc = seq[i+1], a=info[p], b=info[sc];
+    if(a.s.remaining<=0 || b.s.remaining<=0) return;
+    if(a.s.status==='not_started') return;
+    if(!firstActiveWeek(p) && !a.s.programStartDate) return;
+    const nd = need(sc);
+    const f = fr[sc];
+    if(nd>0 && f!==null && f<nd){
+      const dias = f/(nd/5);
+      bn.push({p, sc, f, nd, dias, gap:nd-f, blocked:bloq[p]});
+    }
+  });
+  bn.sort((x,y)=>y.gap-x.gap);
+  const bnEl = document.getElementById('proyBottlenecks');
+  if(bn.length===0){
+    bnEl.innerHTML = '<div class="bn-none">Sin cuellos de botella: todas las partidas en curso tienen frentes suficientes para la próxima semana.</div>';
+  } else {
+    bnEl.innerHTML = bn.slice(0,8).map(x=>
+      '<div class="bn"><b>'+x.p+'</b> frena a <b>'+x.sc+'</b>: hay <b>'+x.f+'</b> frentes disponibles y se necesitan ~'+Math.round(x.nd)+' por semana → '+
+      (x.f===0?'<b style="color:#ff5d5d">sin frentes hoy</b>':'se queda sin trabajo en ~'+Math.max(1,Math.round(x.dias))+(Math.max(1,Math.round(x.dias))===1?' día háb.':' días háb.'))+
+      (x.blocked?' · '+x.blocked+' deptos de '+x.sc+' dependen de que '+x.p+' los termine':'')+'</div>'
+    ).join('') + (bn.length>8 ? '<div class="bn-none">…y '+(bn.length-8)+' más (ver tabla).</div>' : '');
+  }
+
+  // tabla
+  let list = ritmoFilteredPartidas();
+  const key = p=>{ const x=info[p]; if(x.s.status==='done') return -1e9; if(x.noPace) return 1e6; return x.delay===null?-1e8:x.delay; };
+  list = list.slice().sort((a,b)=>key(b)-key(a));
+  document.getElementById('proyTag').textContent = 'ritmo de las últimas 4 semanas · '+list.length+' partidas';
+  if(list.length===0){ tbody.innerHTML='<tr><td colspan="8" style="color:var(--muted);padding:16px;">Sin resultados para este filtro.</td></tr>'; return; }
+  let html='';
+  for(const p of list){
+    const x=info[p], s=x.s, i=order.indexOf(p);
+    const nm = p.replace(/"/g,'&quot;');
+    html += '<tr class="'+(state.selected===p?'rt-active':'')+'" data-p="'+nm+'"><td class="rt-name">'+p+'</td>';
+    if(s.status==='done'){
+      html += '<td class="rt-num">—</td><td class="rt-num">—</td><td class="rt-num">'+(s.programEndDate?formatDateEs(s.programEndDate):'—')+'</td><td colspan="2"><span class="rt-badge done">Completada</span></td>';
+    } else {
+      html += '<td class="rt-num">'+x.ri.weekly.toFixed(1)+' /sem</td>';
+      html += '<td class="rt-num '+(x.ri.trend?x.ri.trend[1]:'tr-flat')+'">'+(x.ri.trend?x.ri.trend[0]:'—')+'</td>';
+      html += '<td class="rt-num">'+(s.programEndDate?formatDateEs(s.programEndDate):'—')+'</td>';
+      if(x.noPace) html += '<td class="rt-num pv-bad">Sin ritmo</td><td class="rt-num pv-bad">—</td>';
+      else if(!x.projected && !s.programEndDate) html += '<td class="rt-num">Sin programa</td><td class="rt-num">—</td>';
+      else if(s.status==='not_started') html += '<td class="rt-num">Según programa</td><td class="rt-num">—</td>';
+      else {
+        const d=x.delay;
+        html += '<td class="rt-num">'+(x.projected?formatDateEs(x.projected):'—')+'</td>';
+        html += '<td class="rt-num '+(d===null?'':(d>0?'pv-bad':'pv-good'))+'">'+(d===null?'—':(d>0?'+':'')+d)+'</td>';
+      }
+    }
+    // frentes
+    if(fr[p]===null || s.status==='done') html += '<td class="rt-num">—</td>';
+    else {
+      const nd=need(p), low = nd>0 && fr[p]<nd;
+      html += '<td class="rt-num '+(low?'pv-bad':'')+'">'+fr[p]+(nd>0?' <small style="color:#8b94a3">(nec. '+Math.round(nd)+'/sem)</small>':'')+'</td>';
+    }
+    // frena a
+    const sc = succOf[p];
+    if(sc && bloq[p]>0 && s.status!=='done' && (s.status==='late'||s.status==='warn'||x.noPace)) html += '<td class="rt-num">'+bloq[p]+' deptos de '+sc+'</td>';
+    else html += '<td class="rt-num">—</td>';
+    html += '</tr>';
+  }
+  tbody.innerHTML = html;
+  tbody.querySelectorAll('tr[data-p]').forEach(tr=>{
+    tr.onclick = ()=>{ const p = tr.getAttribute('data-p'); state.selected = (state.selected===p)?null:p; render(); };
+  });
+}
+['ritmoSearchBox'].forEach(id=>document.getElementById(id).addEventListener('input', renderProyeccion));
+document.getElementById('btnBnAll').addEventListener('click', ()=>{ proyBnMode='all'; renderProyeccion(); });
+document.getElementById('btnBnCrit').addEventListener('click', ()=>{ proyBnMode='critical'; renderProyeccion(); });
+['btnRitmoCritical','btnRitmoAll','btnRitmoAtrasadas'].forEach(id=>document.getElementById(id).addEventListener('click', renderProyeccion));
 
 // ---------- programa semanal sugerido ----------
 const PROGRAMA_HORIZON = 8;
