@@ -475,15 +475,18 @@ html{-webkit-text-size-adjust:100%;}
           <p class="panel-title">Proyección de término, tendencia y ruta crítica</p>
           <span class="chart-tag" id="proyTag">ritmo de las últimas 4 semanas · usa el filtro del panel de ritmo</span>
         </div>
+        <p class="proy-sub" style="margin-top:4px;">Proyección de término de la obra (considera que el programa baja a medida que terminan las partidas)</p>
+        <div class="scurve-kpis" id="obraProy"></div>
+        <p class="scurve-note" id="obraProyNote" style="margin:0 0 14px;"></p>
+        <p class="proy-sub">Indicadores por partida</p>
         <div class="scurve-kpis" id="proyKpis"></div>
         <div class="heatmap-controls" style="margin-top:14px;">
-          <p class="proy-sub" style="margin:0;">Cuellos de botella: partidas que frenan a la siguiente y la dejan sin frentes</p>
+          <p class="proy-sub" style="margin:0;">Detalle por partida: ritmo, tendencia y frentes</p>
           <div style="display:flex;gap:8px;">
             <button class="btn-toggle" id="btnBnAll">Todas las partidas</button>
             <button class="btn-toggle" id="btnBnCrit">Solo críticas</button>
           </div>
         </div>
-        <div id="proyBottlenecks" class="proy-bn"></div>
         <div class="ritmo-table-scroll">
           <table class="ritmo-table" id="proyTable">
             <thead>
@@ -1805,7 +1808,57 @@ function projectionFor(p){
   }
   return {s, ri, projected, noPace, delay};
 }
+function renderObraProyeccion(){
+  const el = document.getElementById('obraProy');
+  const note = document.getElementById('obraProyNote');
+  if(!el) return;
+  const pd = state.programDates || {};
+  const all = [];
+  state.matrix.partidaOrder.forEach(p=>{ (pd[p]||[]).forEach(x=>all.push(x)); });
+  if(all.length<10){ el.innerHTML='<div class="bn-none">Sin datos de programa para proyectar.</div>'; return; }
+  all.sort((a,b)=>a-b);
+  const tot = all.length, start = all[0], end = all[tot-1];
+  const ser = iso => serialOfIso(iso);
+  const n = state.matrix.semanaLabels.length;
+  const dates = state.matrix.semanaDates.map(ser);
+  const cum = [];
+  let acc = 0;
+  for(let k=1;k<=n;k++){ state.matrix.partidaOrder.forEach(p=>{ acc += ((state.matrix.agg[p]||{})[String(k)]||0); }); cum.push(acc); acc = acc; }
+  // cum acumulado correcto (acc ya es acumulado porque no se reinicia)
+  const ES = E => all[Math.min(Math.max(Math.round(E),1),tot)-1];
+  const E = cum[n-1], last = dates[n-1];
+  const esNow = ES(E);
+  const AT = last-start, esDays = esNow-start;
+  const spiGen = AT>0 ? esDays/AT : 1;
+  const w = Math.min(4, n-1);
+  const E4 = cum[n-1-w], d4 = last-dates[n-1-w];
+  const spiRec = d4>0 ? (esNow-ES(E4))/d4 : spiGen;
+  const remPlan = end-esNow;
+  const fmt = sr => formatDateEs(parseISODate(isoOfSerial(sr)));
+  const forecast = spi => (spi>0.01) ? Math.round(last + remPlan/spi) : null;
+  const fGen = forecast(spiGen), fRec = forecast(spiRec);
+  const daysLeft = end-last;
+  const spiReq = daysLeft>0 ? remPlan/daysLeft : null;
+  const remaining = tot-E;
+  const avgReq = daysLeft>0 ? remaining/(daysLeft/7) : null;
+  let next4=0; for(const x of all){ if(x>last && x<=last+28) next4++; }
+  const reqNext = spiReq ? (next4/4)*spiReq : null;
+  const cur4 = w>0 ? (E-E4)/w : 0;
+  const gen = E/n;
+  const lag = Math.max(0,Math.round(AT-esDays));
+  const dl = f => f===null?'—':(f>end?'+':'')+(f-end)+' días';
+  const colr = f => (f!==null && f>end)?'#ff5d5d':'#3ddc97';
+  el.innerHTML =
+    '<div class="scurve-kpi"><div class="k">Término programado</div><div class="v">'+fmt(end)+'</div></div>'+
+    '<div class="scurve-kpi"><div class="k">Proyección · desempeño general ('+Math.round(spiGen*100)+'% del programa)</div><div class="v" style="color:'+colr(fGen)+'">'+(fGen?fmt(fGen):'—')+'</div><div style="font-size:10px;color:#8b94a3;margin-top:2px">'+dl(fGen)+' vs programado</div></div>'+
+    '<div class="scurve-kpi"><div class="k">Proyección · últimas '+w+' semanas ('+Math.round(spiRec*100)+'% del programa)</div><div class="v" style="color:'+colr(fRec)+'">'+(fRec?fmt(fRec):'—')+'</div><div style="font-size:10px;color:#8b94a3;margin-top:2px">'+dl(fRec)+' vs programado</div></div>'+
+    '<div class="scurve-kpi"><div class="k">Ritmo requerido para terminar en fecha</div><div class="v" style="color:#f5a524">'+(reqNext?Math.round(reqNext):'—')+' <small>deptos/sem</small></div><div style="font-size:10px;color:#8b94a3;margin-top:2px">próximas 4 sem · '+(spiReq?Math.round(spiReq*100):'—')+'% del programa<br>promedio hasta el término: '+(avgReq?Math.round(avgReq):'—')+'/sem</div></div>'+
+    '<div class="scurve-kpi"><div class="k">Ritmo actual</div><div class="v" style="color:#4aa8ff">'+Math.round(cur4)+' <small>deptos/sem</small></div><div style="font-size:10px;color:#8b94a3;margin-top:2px">últimas '+w+' semanas<br>promedio general: '+Math.round(gen)+'/sem</div></div>';
+  note.textContent = 'Método: cronograma ganado. Hoy llevamos '+E+' deptos, que el programa original alcanzaba el '+fmt(esNow)+' (atraso de ~'+lag+' días). La proyección suma al hoy los días de programa que faltan ('+remPlan+') divididos por el desempeño, así se conserva la forma del programa (menos partidas activas hacia el final). Ritmo requerido: lo que hay que ejecutar para que los días de programa restantes se cumplan en los días calendario que quedan hasta el término programado.';
+}
+
 function renderProyeccion(){
+  renderObraProyeccion();
   const tbody = document.getElementById('proyTableBody');
   if(!tbody) return;
   document.getElementById('btnBnAll').classList.toggle('active', proyBnMode==='all');
@@ -1846,8 +1899,6 @@ function renderProyeccion(){
   if(progEnd && projEnd) obraDelay = projEnd>progEnd ? businessDaysBetween(progEnd, projEnd) : -businessDaysBetween(projEnd, progEnd);
   const cd = obraDelay===null ? '#8b94a3' : (obraDelay>0?'#ff5d5d':'#3ddc97');
   document.getElementById('proyKpis').innerHTML =
-    '<div class="scurve-kpi"><div class="k">Término programado obra</div><div class="v">'+(progEnd?formatDateEs(progEnd):'—')+'</div></div>'+
-    '<div class="scurve-kpi"><div class="k">Término proyectado (ritmo reciente)</div><div class="v" style="color:#4aa8ff">'+(projEnd?formatDateEs(projEnd):'—')+'</div>'+(sinRitmo?'<div style="font-size:10px;color:#8b94a3;margin-top:2px">sin contar '+sinRitmo+' partidas sin ritmo</div>':'')+'</div>'+
     '<div class="scurve-kpi"><div class="k">Peor desvío de una partida</div><div class="v" style="color:'+(worst?'#ff5d5d':'#3ddc97')+'">'+(worst?'+'+worst.delay+' días háb.':'0 días')+'</div>'+(worst?'<div style="font-size:10px;color:#8b94a3;margin-top:2px;max-width:200px">'+worst.p.slice(0,34)+'</div>':'')+'</div>'+
     '<div class="scurve-kpi"><div class="k">Partidas con atraso proyectado</div><div class="v">'+atrasadasN+'</div>'+'</div>'+
     '<div class="scurve-kpi"><div class="k">En curso sin ritmo reciente</div><div class="v" style="color:'+(sinRitmo?'#ff5d5d':'#3ddc97')+'">'+sinRitmo+'</div></div>';
@@ -1868,17 +1919,6 @@ function renderProyeccion(){
     }
   });
   bn.sort((x,y)=>y.gap-x.gap);
-  const bnEl = document.getElementById('proyBottlenecks');
-  if(bn.length===0){
-    bnEl.innerHTML = '<div class="bn-none">Sin cuellos de botella: todas las partidas en curso tienen frentes suficientes para la próxima semana.</div>';
-  } else {
-    bnEl.innerHTML = bn.slice(0,8).map(x=>
-      '<div class="bn"><b>'+x.p+'</b> frena a <b>'+x.sc+'</b>: hay <b>'+x.f+'</b> frentes disponibles y se necesitan ~'+Math.round(x.nd)+' por semana → '+
-      (x.f===0?'<b style="color:#ff5d5d">sin frentes hoy</b>':'se queda sin trabajo en ~'+Math.max(1,Math.round(x.dias))+(Math.max(1,Math.round(x.dias))===1?' día háb.':' días háb.'))+
-      (x.blocked?' · '+x.blocked+' deptos de '+x.sc+' dependen de que '+x.p+' los termine':'')+'</div>'
-    ).join('') + (bn.length>8 ? '<div class="bn-none">…y '+(bn.length-8)+' más (ver tabla).</div>' : '');
-  }
-
   // tabla
   let list = ritmoFilteredPartidas();
   const key = p=>{ const x=info[p]; if(x.s.status==='done') return -1e9; if(x.noPace) return 1e6; return x.delay===null?-1e8:x.delay; };
