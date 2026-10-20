@@ -1,0 +1,11 @@
+RITMICO Torre B - paquete web (para publicar y agregar a la pantalla de inicio)
+
+Contenido: index.html (el dashboard), manifest.webmanifest, sw.js, icon-192.png, icon-512.png.
+Publica la CARPETA COMPLETA en GitHub Pages (repositorio publico) u otro hosting con https.
+
+ACTUALIZAR EL CELULAR AUTOMATICAMENTE
+1) Una sola vez, en el computador: menu de carga -> "Configurar publicacion (GitHub)".
+   Indica el repositorio (usuario/nombre) y un token de GitHub con permiso Contents: lectura y escritura.
+2) Cada semana: carga el archivo RITMICO en el computador. Los datos se publican solos (data.json).
+3) En el celular: abre el dashboard. Se actualiza al abrirlo (o con "Buscar actualizacion publicada").
+Nota: data.json queda visible en el repositorio publico.

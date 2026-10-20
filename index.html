@@ -306,6 +306,9 @@ html{-webkit-text-size-adjust:100%;}
           <button class="btn-toggle" id="btnImportData" style="width:100%;margin-top:8px;justify-content:center;">⬆ Importar datos de otro dashboard (.json / .html)</button>
           <input type="file" id="importInput" accept=".json,.html" style="display:none;">
           <button class="btn-toggle" id="btnExportDash" style="width:100%;margin-top:8px;justify-content:center;">⬇ Guardar dashboard actualizado (para celular u otro PC)</button>
+          <button class="btn-toggle" id="btnPublish" style="width:100%;margin-top:8px;justify-content:center;">☁ Publicar datos para el celular</button>
+          <button class="btn-toggle" id="btnSyncNow" style="width:100%;margin-top:8px;justify-content:center;">↻ Buscar actualización publicada</button>
+          <button class="btn-toggle" id="btnPublishCfg" style="width:100%;margin-top:8px;justify-content:center;">⚙ Configurar publicación (GitHub)</button>
           <p class="upload-hint">Los datos cargados se guardan solo en este navegador. Para verlos en otro dispositivo, guarda el dashboard actualizado y ábrelo desde ahí.</p>
         </div>
       </div>
@@ -1569,6 +1572,7 @@ function deleteUploadedWeek(week){
   storageSet(K_MATRIX, JSON.stringify(state.matrix));
   storageSet(K_SNAPSHOT, JSON.stringify(state.snapshot));
   storageSet(K_HISTORY, JSON.stringify(state.uploadHistory));
+  afterDataChange();
 
   if(state.highlightWeek && state.highlightWeek>=week) state.highlightWeek=null;
   populateWeekFilterOptions();
@@ -1647,6 +1651,7 @@ document.getElementById('fileInput').addEventListener('change', async (e)=>{
 
     const ok1 = storageSet(K_MATRIX, JSON.stringify(state.matrix));
     const ok2 = storageSet(K_SNAPSHOT, JSON.stringify(state.snapshot));
+    afterDataChange();
 
     populateWeekFilterOptions();
     render();
@@ -2549,6 +2554,7 @@ document.getElementById('importInput').addEventListener('change', async (e)=>{
     state.matrix=mx; state.snapshot=data.snapshot; state.uploadHistory=data.history||[];
     migrateState(); const _adjI = reconcileTotals();
     storageSet(K_MATRIX,JSON.stringify(state.matrix)); storageSet(K_SNAPSHOT,JSON.stringify(state.snapshot)); storageSet(K_HISTORY,JSON.stringify(state.uploadHistory));
+    afterDataChange();
     state.selected=null; state.highlightWeek=null;
     state.heatmapFilter=new Set(EMBEDDED_DATA.criticalPartidas.filter(p=>state.matrix.partidaOrder.includes(p)));
     updateFilterBadge(); populateWeekFilterOptions(); render();
@@ -2569,7 +2575,103 @@ function renderMobilePartidaSelect(){
 document.getElementById('partidaSelectMobile').addEventListener('change',e=>{ state.selected=e.target.value||null; render(); });
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){ navigator.serviceWorker.register('sw.js').catch(()=>{}); }
 
-loadState();
+// ---------- sincronización entre dispositivos (datos publicados en GitHub) ----------
+const K_STAMP = 'ritmico:stamp', K_GH = 'ritmico:gh';
+let _lastSync = 0;
+function getStamp(){ return parseInt(storageGet(K_STAMP)||'0',10)||0; }
+function touchStamp(){ storageSet(K_STAMP, String(Date.now())); }
+function ghConfig(){ try{ return JSON.parse(storageGet(K_GH)||'null'); }catch(e){ return null; } }
+function ghRepoFromLocation(){
+  const h = location.hostname;
+  if(/\.github\.io$/i.test(h)){ const seg = location.pathname.split('/').filter(Boolean); if(seg.length) return h.split('.')[0]+'/'+seg[0]; }
+  return null;
+}
+function repoForRead(){ const c = ghConfig(); return (c && c.repo) || ghRepoFromLocation(); }
+function utf8ToB64(str){ return btoa(unescape(encodeURIComponent(str))); }
+function buildCloudPayload(){
+  return JSON.stringify({ v:2, stamp:getStamp(), savedAt:new Date().toISOString(), matrix:state.matrix, snapshot:state.snapshot });
+}
+async function fetchCloudData(){
+  const repo = repoForRead();
+  let data = null;
+  if(repo){
+    try{
+      const r = await fetch('https://api.github.com/repos/'+repo+'/contents/data.json?t='+Date.now(), { headers:{'Accept':'application/vnd.github.raw+json'}, cache:'no-store' });
+      if(r.ok) data = await r.json();
+    }catch(e){}
+  }
+  if(!data && /^https?:/.test(location.protocol)){
+    try{ const r = await fetch('data.json?t='+Date.now(), { cache:'no-store' }); if(r.ok) data = await r.json(); }catch(e){}
+  }
+  return data;
+}
+async function syncFromCloud(manual){
+  _lastSync = Date.now();
+  try{
+    const d = await fetchCloudData();
+    if(!d || !d.matrix || !d.snapshot || !Array.isArray(d.matrix.semanaLabels)){
+      if(manual) showToast('No se encontraron datos publicados. Publícalos primero desde el computador.', 'error');
+      return;
+    }
+    if((d.stamp||0) <= getStamp()){
+      if(manual) showToast('Ya tienes los datos más recientes (hasta la semana '+state.matrix.semanaLabels.length+').', 'success');
+      return;
+    }
+    const mx = d.matrix, n = mx.semanaLabels.length;
+    if(!Array.isArray(mx.semanaDates)) mx.semanaDates = [];
+    for(let k=0;k<n;k++){ if(!mx.semanaDates[k]) mx.semanaDates[k] = (k<EMBEDDED_DATA.semanaDates.length) ? EMBEDDED_DATA.semanaDates[k] : isoFromLabel(mx.semanaLabels[k], mx.semanaDates[k-1]); }
+    mx.semanaDates.length = n;
+    state.matrix = mx; state.snapshot = d.snapshot; state.uploadHistory = [];
+    migrateState(); reconcileTotals();
+    storageSet(K_MATRIX, JSON.stringify(state.matrix)); storageSet(K_SNAPSHOT, JSON.stringify(state.snapshot)); storageSet(K_HISTORY, '[]');
+    storageSet(K_STAMP, String(d.stamp||Date.now()));
+    state.highlightWeek = null;
+    updateFilterBadge(); populateWeekFilterOptions(); render();
+    showToast('Datos actualizados desde la nube: ahora hasta la semana '+n+'.', 'success');
+  }catch(err){ console.error(err); if(manual) showToast('No se pudo revisar la actualización: '+err.message, 'error'); }
+}
+async function publishToGithub(silent){
+  const c = ghConfig();
+  if(!c || !c.repo || !c.token){ if(!silent) showToast('Primero configura la publicación (botón ⚙ Configurar publicación).', 'error'); return false; }
+  try{
+    const url = 'https://api.github.com/repos/'+c.repo+'/contents/data.json';
+    const hdr = { 'Authorization':'Bearer '+c.token, 'Accept':'application/vnd.github+json' };
+    const branch = c.branch || 'main';
+    let sha;
+    const g = await fetch(url+'?ref='+encodeURIComponent(branch)+'&t='+Date.now(), { headers:hdr, cache:'no-store' });
+    if(g.ok){ sha = (await g.json()).sha; }
+    else if(g.status!==404){ throw new Error('GitHub respondió '+g.status+'. Revisa el token y el nombre del repositorio.'); }
+    if(!getStamp()) touchStamp();
+    const body = { message:'Datos semana '+state.matrix.semanaLabels.length, content:utf8ToB64(buildCloudPayload()), branch };
+    if(sha) body.sha = sha;
+    const p = await fetch(url, { method:'PUT', headers:hdr, body:JSON.stringify(body) });
+    if(!p.ok){ throw new Error('GitHub respondió '+p.status+' al guardar. El token necesita permiso de escritura en "Contents".'); }
+    showToast('Datos publicados (hasta la semana '+state.matrix.semanaLabels.length+'). El celular se actualiza al abrir el dashboard.', 'success');
+    return true;
+  }catch(err){ console.error(err); showToast('No se pudo publicar: '+err.message, 'error'); return false; }
+}
+function afterDataChange(){ touchStamp(); if(ghConfig() && ghConfig().token) publishToGithub(true); }
+document.getElementById('btnPublish').addEventListener('click', ()=>{ touchStamp(); publishToGithub(false); });
+document.getElementById('btnSyncNow').addEventListener('click', ()=>syncFromCloud(true));
+document.getElementById('btnPublishCfg').addEventListener('click', async ()=>{
+  const cur = ghConfig() || {};
+  const repo = window.prompt('Repositorio de GitHub donde se publican los datos (formato usuario/nombre-del-repositorio):', cur.repo || ghRepoFromLocation() || '');
+  if(!repo) return;
+  const token = window.prompt('Token de GitHub con permiso de escritura en "Contents" sobre ese repositorio (se guarda solo en este navegador). Déjalo vacío si este dispositivo solo va a leer:', cur.token || '');
+  if(token===null) return;
+  const cfg = { repo:repo.trim(), token:token.trim(), branch:'main' };
+  try{
+    const r = await fetch('https://api.github.com/repos/'+cfg.repo, { headers: cfg.token ? {'Authorization':'Bearer '+cfg.token} : {} });
+    if(r.ok){ const j = await r.json(); if(j.default_branch) cfg.branch = j.default_branch; }
+  }catch(e){}
+  storageSet(K_GH, JSON.stringify(cfg));
+  showToast(cfg.token ? 'Publicación configurada. Publicando datos…' : 'Configurado para leer datos publicados.', 'success');
+  if(cfg.token){ touchStamp(); publishToGithub(false); }
+});
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && Date.now()-_lastSync > 60000) syncFromCloud(false); });
+
+loadState().then(()=>syncFromCloud(false));
+
 </script>
 </body>
 </html>
